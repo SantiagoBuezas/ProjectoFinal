@@ -7,9 +7,8 @@ class Blog(models.Model):
     tema = models.CharField(max_length=50)
     fecha = models.DateField(null=True)
 
-
-def __str__(self):
-    return f"{self.nombre} ({self.tema})"
+    def __str__(self):
+        return f"{self.nombre} ({self.tema})"
 
 
 class Autor(models.Model):
@@ -18,11 +17,10 @@ class Autor(models.Model):
 
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
-    profecion = models.CharField(max_length=50)
+    profesion = models.CharField(max_length=50)
 
-
-def __str__(self):
-    return f"{self.nombre} {self.apellido}"
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}"
 
 
 class Seccion(models.Model):
@@ -31,9 +29,8 @@ class Seccion(models.Model):
 
     nombre = models.CharField(max_length=50)
 
-
-def __str__(self):
-    return f"{self.nombre}"
+    def __str__(self):
+        return f"{self.nombre}"
 
 
 class Articulo(models.Model):
@@ -44,6 +41,5 @@ class Articulo(models.Model):
     texto = models.CharField(max_length=1000)
     fecha = models.DateField(null=True)
 
-
-def __str__(self):
-    return f"{self.titulo} ({self.fecha})"
+    def __str__(self):
+        return f"{self.titulo} ({self.fecha})"
