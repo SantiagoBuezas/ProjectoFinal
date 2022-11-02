@@ -11,7 +11,7 @@ def mostrar_inicio(request):
 
 def procesar_formulario_blog(request):
     mi_formulario = BlogForm()
-    contexto = {"formulaio": mi_formulario}
+    contexto = {"formulario": mi_formulario}
     return render(request, "Blog/formulario-blog.html", context=contexto)
 
 
