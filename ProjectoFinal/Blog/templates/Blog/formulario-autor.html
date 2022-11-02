@@ -2,6 +2,10 @@
 
 {% block inserte_aqui_su_contenido %}
 
+{% if formulario.errors %}
+<p style="color: red;"> Error: alguno de los datos ingresados es incorrecto, revisar</p> 
+{% endif %}
+
 <form action="" method="POST">{% csrf_token %}
     <table>
         {{ formulario.as_table }}
