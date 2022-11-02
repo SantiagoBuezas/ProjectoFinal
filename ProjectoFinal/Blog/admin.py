@@ -1,3 +1,6 @@
 from django.contrib import admin
+from Blog.models import Articulo, Autor, Secciones
 
-# Register your models here.
+admin.site.register(Articulo)
+admin.site.register(Secciones)
+admin.site.register(Autor)

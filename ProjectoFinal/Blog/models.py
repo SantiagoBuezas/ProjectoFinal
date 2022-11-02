@@ -14,7 +14,7 @@ def __str__(self):
     return f"{self.nombre} {self.apellido}"
 
 
-class secciones(models.Model):
+class Secciones(models.Model):
     class Meta:
         verbose_name_plural = "Secciones"
 
