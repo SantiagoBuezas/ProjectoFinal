@@ -7,6 +7,8 @@ from Blog.views import (
     procesar_formulario_autor,
     procesar_formulario_seccion,
     procesar_formulario_articulo,
+    busqueda_2,
+    buscar_2,
 )
 
 urlpatterns = [
@@ -15,4 +17,6 @@ urlpatterns = [
     path("formulario-autor/", procesar_formulario_autor),
     path("formulario-seccion/", procesar_formulario_seccion),
     path("formulario-articulo/", procesar_formulario_articulo),
+    path("busqueda-2/", busqueda_2),
+    path("buscar-2/", buscar_2),
 ]

@@ -1,0 +1,11 @@
+<p>Estamos buscando el tema: {{ tema }}</p>
+
+{% if blog_encontrados %}
+
+<ul>
+{% for blogs in blog_encontrados %}
+    <li>{{blogs.nombre}} ({{blogs.tema}})</li>
+{% endfor %}
+</ul>
+
+{% endif %}

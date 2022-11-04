@@ -82,3 +82,20 @@ def procesar_formulario_articulo(request):
             nuevo_modelo.save()
         contexto = {"formulario": mi_formulario}
         return render(request, "blog/formulario-articulo.html", context=contexto)
+
+
+def busqueda_2(request):
+    return render(request, "Blog/busqueda_2.html")
+
+
+def buscar_2(request):
+
+    if not request.GET["tema"]:
+        return HttpResponse("No enviaste datos")
+    else:
+        tema_a_buscar = request.GET["tema"]
+        blogs = Blog.objects.filter(tema=tema_a_buscar)
+
+        contexto = {"tema": tema_a_buscar, "blog_encontrados": blogs}
+
+        return render(request, "Blog/resultado_busqueda.html", contexto)

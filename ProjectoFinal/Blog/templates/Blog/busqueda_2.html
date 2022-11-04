@@ -1,0 +1,12 @@
+{% extends "Blog/madre.html" %}
+
+{% load static %}
+
+{% block inserte_aqui_su_contenido %}
+
+<form action="/Blog/buscar-2" method="GET">
+    <p><input type="text" name="tema" id="tema"></p>
+    <input type="submit" value="Buscar Blogs!">
+</form>
+
+{% endblock %}
