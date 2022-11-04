@@ -1,9 +1,17 @@
 from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.urls import reverse
 
 from Blog.models import Blog, Autor, Articulo, Seccion
 from Blog.forms import AutorForm, SeccionForm, ArticuloForm, BlogForm
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 
 
 def mostrar_inicio(request):
@@ -99,3 +107,38 @@ def buscar_2(request):
         contexto = {"tema": tema_a_buscar, "blog_encontrados": blogs}
 
         return render(request, "Blog/resultado_busqueda.html", contexto)
+
+
+class BlogsList(ListView):
+
+    model = Blog
+    template_name = "Blog/blogs-list.html"
+
+
+class BlogDetalle(DetailView):
+
+    model = Blog
+    template_name = "Blog/blog-detalle.html"
+
+
+class BlogCreacion(CreateView):
+    model = Blog
+    fields = ["nombre", "tema"]
+
+    def get_success_url(self):
+        return reverse("BlogList")
+
+
+class BlogUpdateView(UpdateView):
+    model = Blog
+    fields = ["nombre", "tema"]
+
+    def get_success_url(self):
+        return reverse("BlogList")
+
+
+class BlogDelete(DeleteView):
+    model = Blog
+
+    def get_success_url(self):
+        return reverse("BlogList")

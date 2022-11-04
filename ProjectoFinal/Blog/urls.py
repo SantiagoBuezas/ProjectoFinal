@@ -9,14 +9,26 @@ from Blog.views import (
     procesar_formulario_articulo,
     busqueda_2,
     buscar_2,
+    BlogsList,
+    BlogDetalle,
+    BlogCreacion,
+    BlogUpdateView,
+    BlogDelete,
 )
 
 urlpatterns = [
-    path("inicio/", mostrar_inicio),
-    path("formulario-blog/", procesar_formulario_blog),
-    path("formulario-autor/", procesar_formulario_autor),
-    path("formulario-seccion/", procesar_formulario_seccion),
-    path("formulario-articulo/", procesar_formulario_articulo),
-    path("busqueda-2/", busqueda_2),
-    path("buscar-2/", buscar_2),
+    path("inicio/", mostrar_inicio, name="inicio"),
+    path("formulario-blog/", procesar_formulario_blog, name="formulario-blog"),
+    path("formulario-autor/", procesar_formulario_autor, name="formulario-autor"),
+    path("formulario-seccion/", procesar_formulario_seccion, name="formulario-seccion"),
+    path(
+        "formulario-articulo/", procesar_formulario_articulo, name="formualrio-articulo"
+    ),
+    path("busqueda-2/", busqueda_2, name="busqueda-2"),
+    path("buscar-2/", buscar_2, name="bucar-2"),
+    path("blogs-list/", BlogsList.as_view(), name="BlogList"),
+    path("r'(?P<pk>\d+)^$'", BlogDetalle.as_view(), name="BlogDetail"),
+    path("blog-nuevo/", BlogCreacion.as_view(), name="BlogNew"),
+    path("editar/<pk>", BlogUpdateView.as_view(), name="BlogUpdate"),
+    path("borrar/<pk>", BlogDelete.as_view(), name="BlogDelete"),
 ]
