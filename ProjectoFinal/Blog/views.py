@@ -12,10 +12,20 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth import authenticate
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 
 def mostrar_inicio(request):
     return render(request, "Blog/inicio.html")
+
+
+@login_required
+def mostrar_about(request):
+    return render(request, "Blog/about.html")
 
 
 def procesar_formulario_blog(request):
@@ -92,10 +102,12 @@ def procesar_formulario_articulo(request):
         return render(request, "blog/formulario-articulo.html", context=contexto)
 
 
+@login_required
 def busqueda_2(request):
     return render(request, "Blog/busqueda_2.html")
 
 
+@login_required
 def buscar_2(request):
 
     if not request.GET["tema"]:
@@ -109,19 +121,19 @@ def buscar_2(request):
         return render(request, "Blog/resultado_busqueda.html", contexto)
 
 
-class BlogsList(ListView):
+class BlogsList(ListView, LoginRequiredMixin):
 
     model = Blog
     template_name = "Blog/blogs-list.html"
 
 
-class BlogDetalle(DetailView):
+class BlogDetalle(DetailView, LoginRequiredMixin):
 
     model = Blog
     template_name = "Blog/blog-detalle.html"
 
 
-class BlogCreacion(CreateView):
+class BlogCreacion(CreateView, LoginRequiredMixin):
     model = Blog
     fields = ["nombre", "tema"]
 
@@ -129,7 +141,7 @@ class BlogCreacion(CreateView):
         return reverse("BlogList")
 
 
-class BlogUpdateView(UpdateView):
+class BlogUpdateView(UpdateView, LoginRequiredMixin):
     model = Blog
     fields = ["nombre", "tema"]
 
@@ -137,8 +149,34 @@ class BlogUpdateView(UpdateView):
         return reverse("BlogList")
 
 
-class BlogDelete(DeleteView):
+class BlogDelete(DeleteView, LoginRequiredMixin):
     model = Blog
 
     def get_success_url(self):
         return reverse("BlogList")
+
+
+class MyLogin(LoginView):
+    template_name = "Blog/login.html"
+
+
+def register(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            username_capturado = form.cleaned_data["username"]
+            form.save()
+
+            return render(
+                request,
+                "Blog/inicio.html",
+                {"mensaje": f"Usuario: {username_capturado}"},
+            )
+
+    else:
+        form = UserCreationForm()
+
+    return render(request, "Blog/register.html", {"form": form})
+    
+class MyLogout(LogoutView, LoginRequiredMixin):
+    template_name = "Blog/logout.html"

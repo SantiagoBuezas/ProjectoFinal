@@ -3,5 +3,11 @@
 {% load static %}
 
 {% block inserte_aqui_su_contenido %}
-Este es el template de Inicio
+Bienvenido a la app de Blogs
+<br>
+{% if mensaje %}
+<br>
+{{ mensaje }}
+{% endif %}
+
 {% endblock %}

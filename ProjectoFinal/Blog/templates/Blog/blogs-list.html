@@ -1,4 +1,8 @@
-<h2>Projecto Final - Blog </h2>
+{% extends "Blog/madre.html" %}
+
+{% load static %}
+
+{% block inserte_aqui_su_contenido %}
 <ul>
     {% for Blog in object_list %}
     
@@ -13,3 +17,4 @@
     </li>
     {% endfor %}
 </ul>
+{% endblock %}

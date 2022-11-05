@@ -14,6 +14,10 @@ from Blog.views import (
     BlogCreacion,
     BlogUpdateView,
     BlogDelete,
+    mostrar_about,
+    MyLogin,
+    register,
+    MyLogout,
 )
 
 urlpatterns = [
@@ -31,4 +35,8 @@ urlpatterns = [
     path("blog-nuevo/", BlogCreacion.as_view(), name="BlogNew"),
     path("editar/<pk>", BlogUpdateView.as_view(), name="BlogUpdate"),
     path("borrar/<pk>", BlogDelete.as_view(), name="BlogDelete"),
+    path("about/", mostrar_about, name="About-me"),
+    path("login/", MyLogin.as_view(), name="Login"),
+    path("register/", register, name="Register"),
+    path("logout/", MyLogout.as_view(), name="Logout"),
 ]

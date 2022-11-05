@@ -1,4 +1,17 @@
 <h2>Projecto Final - Blog </h2>
+<br>
+<a href="{% url 'BlogList' %}">Mis Blogs</a>
+<a href="{% url 'BlogNew' %}">Agregar Blog</a>
+<a href="{% url 'busqueda-2' %}">Buscar Blog</a>
+<a href="{% url 'About-me' %}">Acerca de mi</a>
+{% if not request.user.is_authenticated %}
+    <a href="{% url 'Login' %}">Login</a>
+{% endif %}
 
+{% if request.user.is_authenticated %}
+    <a href="{% url 'Logout' %}">Logout</a>
+{% endif %}
+<br>
+<br>
 {% block inserte_aqui_su_contenido %}
 {% endblock %}
