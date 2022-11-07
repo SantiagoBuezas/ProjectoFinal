@@ -9,7 +9,9 @@
 {% endif %}
 
 {% if request.user.is_authenticated %}
+    <a href="{% url 'EditarPerfil' %}">Editar Perfil</a>
     <a href="{% url 'Logout' %}">Logout</a>
+    <p> Hola, {{ user.username }} !!</p>
 {% endif %}
 <br>
 <br>

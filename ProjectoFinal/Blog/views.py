@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse
 
 from Blog.models import Blog, Autor, Articulo, Seccion
-from Blog.forms import AutorForm, SeccionForm, ArticuloForm, BlogForm
+from Blog.forms import AutorForm, SeccionForm, ArticuloForm, BlogForm, UserEditionForm
 from django.views.generic import (
     ListView,
     DetailView,
@@ -19,6 +19,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def mostrar_inicio(request):
     return render(request, "Blog/inicio.html")
 
@@ -121,19 +122,19 @@ def buscar_2(request):
         return render(request, "Blog/resultado_busqueda.html", contexto)
 
 
-class BlogsList(ListView, LoginRequiredMixin):
+class BlogsList(LoginRequiredMixin, ListView):
 
     model = Blog
     template_name = "Blog/blogs-list.html"
 
 
-class BlogDetalle(DetailView, LoginRequiredMixin):
+class BlogDetalle(LoginRequiredMixin, DetailView):
 
     model = Blog
     template_name = "Blog/blog-detalle.html"
 
 
-class BlogCreacion(CreateView, LoginRequiredMixin):
+class BlogCreacion(LoginRequiredMixin, CreateView):
     model = Blog
     fields = ["nombre", "tema"]
 
@@ -141,7 +142,7 @@ class BlogCreacion(CreateView, LoginRequiredMixin):
         return reverse("BlogList")
 
 
-class BlogUpdateView(UpdateView, LoginRequiredMixin):
+class BlogUpdateView(LoginRequiredMixin, UpdateView):
     model = Blog
     fields = ["nombre", "tema"]
 
@@ -149,7 +150,7 @@ class BlogUpdateView(UpdateView, LoginRequiredMixin):
         return reverse("BlogList")
 
 
-class BlogDelete(DeleteView, LoginRequiredMixin):
+class BlogDelete(LoginRequiredMixin, DeleteView):
     model = Blog
 
     def get_success_url(self):
@@ -177,6 +178,30 @@ def register(request):
         form = UserCreationForm()
 
     return render(request, "Blog/register.html", {"form": form})
-    
-class MyLogout(LogoutView, LoginRequiredMixin):
+
+
+class MyLogout(LoginRequiredMixin, LogoutView):
     template_name = "Blog/logout.html"
+
+
+@login_required
+def editar_perfil(request):
+    user = request.user
+    if request.method != "POST":
+        form = UserEditionForm(initial={"email": user.email})
+    else:
+        form = UserEditionForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            user.email = data["email"]
+            user.first_name = data["first_name"]
+            user.last_name = data["last_name"]
+            user.set_password(data["password1"])
+            user.save()
+            return render(request, "Blog/inicio.html")
+
+    contexto = {
+        "user": user,
+        "form": form,
+    }
+    return render(request, "Blog/editarPerfil.html", contexto)
