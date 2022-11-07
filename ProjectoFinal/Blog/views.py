@@ -4,7 +4,15 @@ from django.shortcuts import render
 from django.urls import reverse
 
 from Blog.models import Blog, Autor, Articulo, Seccion, Avatar
-from Blog.forms import AutorForm, SeccionForm, ArticuloForm, BlogForm, UserEditionForm,AvatarForm
+from Blog.forms import (
+    AutorForm,
+    SeccionForm,
+    ArticuloForm,
+    BlogForm,
+    UserEditionForm,
+    AvatarForm,
+    MensajeForm,
+)
 from django.views.generic import (
     ListView,
     DetailView,
@@ -17,7 +25,6 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-
 
 
 @login_required
@@ -96,7 +103,7 @@ def procesar_formulario_articulo(request):
         mi_formulario = ArticuloForm()
         contexto = {"formulario": mi_formulario}
         return render(request, "blog/formulario-articulo.html", context=contexto)
-    if request.method == "PSOT":
+    if request.method == "POST":
         mi_formulario = ArticuloForm(request.POST)
         if mi_formulario.is_valid():
             datos_ingresados_por_usuario = mi_formulario.cleaned_data
@@ -227,3 +234,16 @@ def agregar_avatar(request):
 
     contexto = {"form": form}
     return render(request, "Blog/avatar_form.html", contexto)
+
+
+def mandar_mensaje(request):
+    if request.method == "GET":
+        mi_formulario = MensajeForm()
+        contexto = {"formulario": mi_formulario}
+        return render(request, "blog/formulario-de-mensajes.html", context=contexto)
+    if request.method == "POST":
+        return render(request, "blog/mensaje-enviado.html")
+
+
+def mensaje_enviado(request):
+    return render(request, "blog/mensaje-enviado.html")

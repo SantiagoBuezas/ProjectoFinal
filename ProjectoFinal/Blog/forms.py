@@ -3,6 +3,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from Blog.models import Avatar
 
+
+class MensajeForm(forms.Form):
+    email = forms.EmailField()
+    texto = forms.CharField(max_length=1000)
+
+
 class BlogForm(forms.Form):
     nombre = forms.CharField(max_length=50)
     tema = forms.CharField(max_length=50)
@@ -36,6 +42,7 @@ class UserEditionForm(UserCreationForm):
         model = User
         fields = ["email", "password1", "password2", "first_name", "last_name"]
         # help_texts = {k: "" for k in fields}
+
 
 class AvatarForm(forms.ModelForm):
 

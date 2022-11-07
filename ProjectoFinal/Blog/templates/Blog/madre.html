@@ -12,6 +12,7 @@
 {% if request.user.is_authenticated %}
     <a href="{% url 'EditarPerfil' %}">Editar Perfil</a>
     <a href="{% url 'AgregarAvatar' %}">Agregar Avatar</a>
+    <a href="{% url 'Formulario-de-mensajes' %}">Enviar mensaje</a>
     <a href="{% url 'Logout' %}">Logout</a>
     {% if avatar %}
     <p><img height="40px" src="{{ avatar }}"/></p>

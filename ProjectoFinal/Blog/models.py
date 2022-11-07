@@ -45,6 +45,13 @@ class Articulo(models.Model):
     def __str__(self):
         return f"{self.titulo} ({self.fecha})"
 
+
 class Avatar(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to="avatares", null=True, blank=True)
+
+
+class Mensaje(models.Model):
+
+    email = models.EmailField()
+    texto = models.CharField(max_length=1000)
