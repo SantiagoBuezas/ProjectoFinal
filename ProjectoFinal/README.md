@@ -25,7 +25,7 @@ Las rutas son:
 
 Los test:
 
-Hice tres test solamente, es algo que me encanto hacer en las primeras clases de python pero me resulto muy dificil de aplicar, en algunos casos y entender la abstraccion total para poder saber que va a hacer y para que va a servir.
+<a>Hice tres test solamente, es algo que me encanto hacer en las primeras clases de python pero me resulto muy dificil de aplicar, en algunos casos y entender la abstraccion total para poder saber que va a hacer y para que va a servir.</a>
 
 Los test son
 
