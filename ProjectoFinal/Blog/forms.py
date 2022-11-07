@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-
+from Blog.models import Avatar
 
 class BlogForm(forms.Form):
     nombre = forms.CharField(max_length=50)
@@ -36,3 +36,11 @@ class UserEditionForm(UserCreationForm):
         model = User
         fields = ["email", "password1", "password2", "first_name", "last_name"]
         # help_texts = {k: "" for k in fields}
+
+class AvatarForm(forms.ModelForm):
+
+    imagen = forms.ImageField()
+
+    class Meta:
+        model = Avatar
+        fields = ["imagen", "user"]

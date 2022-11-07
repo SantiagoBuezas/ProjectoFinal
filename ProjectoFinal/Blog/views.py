@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 
-from Blog.models import Blog, Autor, Articulo, Seccion
-from Blog.forms import AutorForm, SeccionForm, ArticuloForm, BlogForm, UserEditionForm
+from Blog.models import Blog, Autor, Articulo, Seccion, Avatar
+from Blog.forms import AutorForm, SeccionForm, ArticuloForm, BlogForm, UserEditionForm,AvatarForm
 from django.views.generic import (
     ListView,
     DetailView,
@@ -19,9 +19,16 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
 
+
 @login_required
 def mostrar_inicio(request):
-    return render(request, "Blog/inicio.html")
+    avatar = Avatar.objects.filter(user=request.user).first()
+    if avatar is not None:
+        contexto = {"avatar": avatar.imagen.url}
+    else:
+        contexto = {}
+
+    return render(request, "Blog/inicio.html", contexto)
 
 
 @login_required
@@ -170,7 +177,7 @@ def register(request):
 
             return render(
                 request,
-                "Blog/inicio.html",
+                "Blog/post-register.html",
                 {"mensaje": f"Usuario: {username_capturado}"},
             )
 
@@ -205,3 +212,18 @@ def editar_perfil(request):
         "form": form,
     }
     return render(request, "Blog/editarPerfil.html", contexto)
+
+
+@login_required
+def agregar_avatar(request):
+    if request.method != "POST":
+        form = AvatarForm()
+    else:
+        form = AvatarForm(request.POST, request.FILES)
+        if form.is_valid():
+            Avatar.objects.filter(user=request.user).delete()
+            form.save()
+            return render(request, "Blog/inicio.html")
+
+    contexto = {"form": form}
+    return render(request, "Blog/avatar_form.html", contexto)

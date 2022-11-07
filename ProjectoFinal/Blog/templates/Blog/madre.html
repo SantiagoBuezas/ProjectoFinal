@@ -1,5 +1,6 @@
 <h2>Projecto Final - Blog </h2>
 <br>
+<a href="{% url 'inicio' %}">Inicio</a>
 <a href="{% url 'BlogList' %}">Mis Blogs</a>
 <a href="{% url 'BlogNew' %}">Agregar Blog</a>
 <a href="{% url 'busqueda-2' %}">Buscar Blog</a>
@@ -10,7 +11,11 @@
 
 {% if request.user.is_authenticated %}
     <a href="{% url 'EditarPerfil' %}">Editar Perfil</a>
+    <a href="{% url 'AgregarAvatar' %}">Agregar Avatar</a>
     <a href="{% url 'Logout' %}">Logout</a>
+    {% if avatar %}
+    <p><img height="40px" src="{{ avatar }}"/></p>
+    {% endif %}
     <p> Hola, {{ user.username }} !!</p>
 {% endif %}
 <br>
