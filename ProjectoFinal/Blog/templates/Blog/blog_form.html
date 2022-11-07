@@ -8,13 +8,20 @@
 	<title>Curso Formulario</title>
 </head>
 <body style="background-color: white;">
+{% extends "Blog/madre.html" %}
 
-    <form action="" method="POST">{% csrf_token %}
+    {% load static %}
+    
+    {% block inserte_aqui_su_contenido %}
+    Bienvenido a la app de Blogs - Crear un Blog nuevo o Editar uno ya existente
+
+    <form action="" method="POST">
+        {% csrf_token %}
         {{ form.as_p }}
         
         <input type="submit" value="Submit" />
     </form>
 
-
+{% endblock %}
 </body>
 </html>

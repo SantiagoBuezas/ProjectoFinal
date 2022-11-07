@@ -4,9 +4,14 @@ from django.contrib.auth.models import User
 
 
 class Blog(models.Model):
+    class Meta:
+        verbose_name_plural = "Blogs"
+
     nombre = models.CharField(max_length=50)
     tema = models.CharField(max_length=50)
     fecha = models.DateField(null=True)
+    cuerpo = models.CharField(max_length=1000, null=True)
+    autor_nombre_completo = models.CharField(max_length=50, null=True)
 
     def __str__(self):
         return f"{self.nombre} ({self.tema})"

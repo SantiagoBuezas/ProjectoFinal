@@ -13,6 +13,8 @@ class BlogForm(forms.Form):
     nombre = forms.CharField(max_length=50)
     tema = forms.CharField(max_length=50)
     fecha = forms.DateField()
+    cuerpo = forms.CharField(max_length=1000)
+    autor_nombre_completo = forms.CharField(max_length=50)
 
 
 class AutorForm(forms.Form):

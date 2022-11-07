@@ -150,7 +150,7 @@ class BlogDetalle(LoginRequiredMixin, DetailView):
 
 class BlogCreacion(LoginRequiredMixin, CreateView):
     model = Blog
-    fields = ["nombre", "tema"]
+    fields = ["nombre", "tema", "fecha", "cuerpo", "autor_nombre_completo"]
 
     def get_success_url(self):
         return reverse("BlogList")
@@ -158,7 +158,7 @@ class BlogCreacion(LoginRequiredMixin, CreateView):
 
 class BlogUpdateView(LoginRequiredMixin, UpdateView):
     model = Blog
-    fields = ["nombre", "tema"]
+    fields = ["nombre", "tema", "fecha", "cuerpo", "autor_nombre_completo"]
 
     def get_success_url(self):
         return reverse("BlogList")
