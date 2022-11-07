@@ -8,20 +8,20 @@ Integrantes: Santiago Buezas
 
 Las rutas son:
 
-Blog/inicio
-Blog/login
-Blog/register
-Blog/post-register
-Blog/blogs-list
-Blog/blog-nuevo
-Blog/busqueda-2
-Blog/resultado_de_busqueda
-Blog/about
-Blog/editar-perfil
-Blog/agregar-avatar
-Blog/formulario-de-mensajes
-Blog/mensaje-enviado
-Blog/logout
+<p>Blog/inicio</p>
+<p>Blog/login</p>
+<p>Blog/register</p>
+<p>Blog/post-register</p>
+<p>Blog/blogs-list</p>
+<p>Blog/blog-nuevo</p>
+<p>Blog/busqueda-2</p>
+<p>Blog/resultado_de_busqueda</p>
+<p>Blog/about</p>
+<p>Blog/editar-perfil</p>
+<p>Blog/agregar-avatar</p>
+<p>Blog/formulario-de-mensajes</p>
+<p>Blog/mensaje-enviado</p>
+<p>Blog/logout</p>
 
 Los test:
 
@@ -29,6 +29,6 @@ Hice tres test solamente, es algo que me encanto hacer en las primeras clases de
 
 Los test son
 
-El primero verifica si el tema es el correcto
-El segundo verifica si tiene fecha y/o esta escrita de manera correcta
-La tercera verifica la creacion de blog de marera corracta
+<p>El primero verifica si el tema es el correcto</p>
+<p>El segundo verifica si tiene fecha y/o esta escrita de manera correcta</p>
+<p>La tercera verifica la creacion de blog de marera corracta</p>
