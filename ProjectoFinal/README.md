@@ -1,6 +1,7 @@
 # Projecto Final
 
-Link:
+Video demostrativo de la app web
+Link: https://youtu.be/-ja_ZIb182o
 
 Integrantes: Santiago Buezas
 
@@ -32,3 +33,4 @@ Los test son
 <p>El primero verifica si el tema es el correcto</p>
 <p>El segundo verifica si tiene fecha y/o esta escrita de manera correcta</p>
 <p>La tercera verifica la creacion de blog de marera corracta</p>
+
